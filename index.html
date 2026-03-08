@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>와이즈업 야간 관리 선생님 모집</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wu-blue: #0084FF;
+    --wu-blue-deep: #275D9E;
+    --wu-blue-mid: #3982CB;
+    --wu-blue-light: #D1E5FD;
+    --wu-blue-pale: #EBF6FF;
+    --wu-dark: #121314;
+    --wu-dark2: #1B1F26;
+    --wu-gray: #525860;
+    --wu-gray-mid: #7D848C;
+    --wu-gray-light: #C0C5CC;
+    --wu-gray-pale: #E6E9EF;
+    --wu-bg: #F5F7FA;
+    --wu-logo-dark: #3D3D3D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--wu-bg);
+    color: var(--wu-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--wu-dark) 0%, var(--wu-dark2) 50%, #0a2a4a 100%);
+    padding: 56px 24px 64px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,132,255,.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -40px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(57,130,203,.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    margin-bottom: 36px;
+    animation: fadeDown .6s ease-out;
+  }
+  .logo-wise { color: #fff; }
+  .logo-up { color: var(--wu-blue); }
+
+  .badge {
+    display: inline-block;
+    background: rgba(0,132,255,.15);
+    border: 1px solid rgba(0,132,255,.3);
+    color: var(--wu-blue);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    animation: fadeDown .6s ease-out .1s both;
+  }
+
+  .hero h1 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    animation: fadeDown .6s ease-out .2s both;
+  }
+
+  .hero p.sub {
+    color: var(--wu-gray-light);
+    font-size: 15px;
+    line-height: 1.6;
+    animation: fadeDown .6s ease-out .3s both;
+  }
+
+  .highlight-strip {
+    max-width: 640px;
+    margin: -32px auto 0;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    animation: fadeUp .5s ease-out .4s both;
+  }
+
+  .highlight-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    transition: transform .2s;
+  }
+  .highlight-card:hover { transform: translateY(-3px); }
+
+  .highlight-card .icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .highlight-card:nth-child(1) .icon { background: var(--wu-blue-pale); }
+  .highlight-card:nth-child(2) .icon { background: #FFF4D6; }
+  .highlight-card:nth-child(3) .icon { background: #E8F5E9; }
+
+  .highlight-card .label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--wu-gray-mid);
+    margin-bottom: 4px;
+  }
+
+  .highlight-card .value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--wu-dark);
+  }
+
+  .content {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 36px 24px 80px;
+  }
+
+  .section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    animation: fadeUp .5s ease-out both;
+  }
+  .section:nth-child(1) { animation-delay: .5s; }
+  .section:nth-child(2) { animation-delay: .6s; }
+  .section:nth-child(3) { animation-delay: .7s; }
+  .section:nth-child(4) { animation-delay: .8s; }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--wu-dark);
+    margin-bottom: 18px;
+  }
+
+  .section-title .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--wu-blue);
+    flex-shrink: 0;
+  }
+
+  .task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .task-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--wu-gray);
+  }
+
+  .task-list li .num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    background: var(--wu-blue-pale);
+    color: var(--wu-blue);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .info-item {
+    background: var(--wu-bg);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .info-item .info-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--wu-gray-mid);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+
+  .info-item .info-value {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--wu-dark);
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--wu-blue-pale);
+    color: var(--wu-blue-deep);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+  }
+
+  .tag .tag-icon {
+    font-size: 14px;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding-top: 8px;
+    animation: fadeUp .5s ease-out .9s both;
+  }
+
+  .cta-msg {
+    font-size: 14px;
+    color: var(--wu-gray-mid);
+    margin-bottom: 18px;
+    line-height: 1.55;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--wu-blue) 0%, var(--wu-blue-deep) 100%);
+    color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 48px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(0,132,255,.3);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,132,255,.4);
+  }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--wu-gray-light);
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 26px; }
+    .highlight-strip { grid-template-columns: 1fr; gap: 10px; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="logo">
+      <span class="logo-wise">WISE</span><span class="logo-up">UP</span>
+    </div>
+    <div class="badge">야간 관리 선생님 모집</div>
+    <h1>학생들의 저녁 자습을<br>함께 이끌어 주세요</h1>
+    <p class="sub">성남시 소재 관리형 학원 와이즈업에서<br>야간 시간대 자습 관리 선생님을 찾고 있습니다.</p>
+  </div>
+</div>
+
+<div class="highlight-strip">
+  <div class="highlight-card">
+    <div class="icon">🕘</div>
+    <div class="label">근무 시간</div>
+    <div class="value">21:00 – 24:00</div>
+  </div>
+  <div class="highlight-card">
+    <div class="icon">💰</div>
+    <div class="label">시급</div>
+    <div class="value">12,000원 이상</div>
+  </div>
+  <div class="highlight-card">
+    <div class="icon">📅</div>
+    <div class="label">근무 요일</div>
+    <div class="value">협의 가능</div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="section">
+    <div class="section-title">
+      <span class="dot"></span>담당 업무
+    </div>
+    <ul class="task-list">
+      <li>
+        <span class="num">1</span>
+        <span>학생들이 집중할 수 있도록 <strong>자습 분위기 관리</strong></span>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <span><strong>출결 확인</strong> 및 관리</span>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <span>학생들의 <strong>간단한 질의응답</strong> 대응</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <span class="dot"></span>근무 조건
+    </div>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">근무 시간</div>
+        <div class="info-value">오후 9시 – 오전 12시</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">시급</div>
+        <div class="info-value">12,000원 이상</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">근무 요일</div>
+        <div class="info-value">협의 가능</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">근무지</div>
+        <div class="info-value">성남시 분당구 성남대로331번길 3-13<br><span style="font-size:12px;font-weight:500;color:var(--wu-gray-mid)">정자역 3번출구 도보 3분</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <span class="dot"></span>이런 분이면 좋아요
+    </div>
+    <div class="tag-list">
+      <div class="tag"><span class="tag-icon">🎓</span> 교육 관련 전공자</div>
+      <div class="tag"><span class="tag-icon">🤝</span> 성실하고 책임감 있는 분</div>
+      <div class="tag"><span class="tag-icon">💬</span> 학생들과 소통이 편한 분</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <span class="dot"></span>지원 방법
+    </div>
+    <ul class="task-list">
+      <li>
+        <span class="num">①</span>
+        <span>알바몬 온라인 지원</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="cta-section">
+    <p class="cta-msg">
+      학생들의 학습을 가까이에서 도울 수 있는<br>보람 있는 자리입니다. 많은 지원 부탁드립니다!
+    </p>
+    <div class="footer-note">© WISEUP · 성남시 분당구 정자동 · 정자역 3번출구 도보 3분</div>
+  </div>
+</div>
+
+</body>
+</html>
